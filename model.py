@@ -49,7 +49,7 @@ class SelfAttention(nn.Module):
         Q = Q.view(B, L, H, C // H).permute(0, 2, 1, 3)  # (B, H, L, C // H)
         V = V.view(B, L, H, C // H).permute(0, 2, 1, 3)  # (B, H, L, C // H)
         # These conditions should be true. 
-        print(K.shape)
+        # print(K.shape)
         # assert(K.shape == torch.tensor.Size([B, self.n_head, L, C // self.n_head]) )
         # manual implementation of attention 
         # Interact queries and keys, scale it by the embedding dimension  
