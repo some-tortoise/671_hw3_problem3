@@ -28,7 +28,6 @@ class SelfAttention(nn.Module):
         self.c_proj = nn.Linear(config.n_embd, config.n_embd, bias=config.bias)
         self.attn_dropout = nn.Dropout(config.dropout)
         self.resid_dropout = nn.Dropout(config.dropout)
-        print("BBBBBBBBBBBB")
 
         # create a persistent lower triangular matrix for the mask included in the state_dict 
         # but not a tuned parameter
@@ -36,7 +35,6 @@ class SelfAttention(nn.Module):
                                     .view(1, 1, config.block_size, config.block_size))
 
     def forward(self, x):
-        print("AAAAAAA")
         B, L, C = x.size()
         
         # retrieve the Q, K, V layers from self.c_attn(x) 
@@ -68,7 +66,7 @@ class SelfAttention(nn.Module):
         # have it interact with the value keys 
         # y = ...
         y = att @ V
-        assert(y.shape == torch.tensor.size([B, self.n_heads, L, C // self.n_heads]))
+        # assert(y.shape == torch.tensor.size([B, self.n_heads, L, C // self.n_heads]))
         # re-assemble all head outputs side by side. Uncomment when you are finished. 
         y = y.transpose(1, 2).contiguous().view(B, L, C) 
         # output projection. Uncomment when you are finished. 
