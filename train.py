@@ -7,6 +7,8 @@ import numpy as np
 import torch
 from model import Config, Transformer
 
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 # -----------------------------------------------------------------------------
 # I/O
 out_dir = 'checkpoints'
